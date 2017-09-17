@@ -1,0 +1,11 @@
+<h1>Landmarks</h1>
+<ul>
+  <% @landmarks = Landmark.all.sort { |lm| lm.name } %>
+  <% @landmarks.each do |landmark| %>
+    <li>
+      <a href="/landmarks/<%= landmark.id %>">
+        <%= landmark.name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
