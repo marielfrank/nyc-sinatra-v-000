@@ -1,0 +1,30 @@
+<h1>Update <%= @landmark.name %>!</h1>
+<form action="/landmarks/<%= @landmark.id %>" method="post">
+  <label>Name:</label><br>
+  <input type="text" name="landmark[name]" id="name" value="<%= @landmark.name %>">
+  <br><br>
+  <label>Year completed:</label><br>
+  <input type="text" name="landmark[year_completed]" id="year_completed" value="<%= @landmark.year_completed %>">
+  <br><br>
+  <label>Select figure:</label><br>
+  <% Figure.all.each do |figure| %>
+    <input type="radio" name="landmark[figure][id]" value="<%= figure.id %>" id="figure_<%= figure.id %>" <%= 'checked' if @landmark.figure == figure %>>
+      <%= figure.name %>
+    </input>
+    <br>
+  <% end %>
+  <label>or add a new figure:</label><br>
+  <input type="text" name="figure[name]" id="new_figure">
+  <br><br>
+  <label>Select a title:</label><br>
+  <% Title.all.each do |title| %>
+    <input type="checkbox" name="figure[title_ids][]" value="<%= title.id %>" id="title_<%= title.id %>" <%= 'checked' if !!@landmark.figure && @landmark.figure.titles.include?(title) %>>
+      <%= title.name %>
+    </input>
+    <br>
+  <% end %>
+  <label>and/or add a new title:</label><br>
+  <input type="text" name="title[name]" id="new_title">
+  <br><br>
+  <input type="submit" value="Edit Landmark">
+</form>
