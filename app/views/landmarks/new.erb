@@ -8,7 +8,7 @@
   <br><br>
   <label>Select figure:</label><br>
   <% Figure.all.each do |figure| %>
-    <input type="radio" name="landmark[figure][id]" value="<%= figure.id %>" id="figure_<%= figure.id %>">
+    <input type="radio" name="landmark[figure_id]" value="<%= figure.id %>" id="figure_<%= figure.id %>">
       <%= figure.name %>
     </input>
     <br>
